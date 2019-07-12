@@ -7,4 +7,7 @@ __license__ = 'MIT'
 # Public API
 from . import _error as error
 from ._api import last
+from ._api import last as last_version
 from ._version import Version, VersionRange, VERSION_PART_MAX
+from ._error import InvalidVersionIdentifier, InvalidComparisonOperator, InvalidCondition, InvalidRequirementString, \
+    InvalidVersionRangeIdentifier

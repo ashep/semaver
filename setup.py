@@ -7,7 +7,7 @@ with open('README.md') as fh:
 
 setup(
     name='semaver',
-    version='0.1',
+    version='0.2',
     author='Oleksandr Shepetko',
     author_email='a@shepetko.com',
     description='Semantic Versioning Helper for Python',
@@ -20,7 +20,8 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov'],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
@@ -28,8 +29,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-        'Topic :: Software Development :: Code Generators',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Text Processing :: Markup :: HTML',
     ],
 )
