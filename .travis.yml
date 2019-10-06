@@ -1,16 +1,10 @@
 dist: xenial
-
 language: python
-
 python:
-  - "3.6"
   - "3.7"
-
 install:
-  - pip install codecov
-
+  - pip install tox-travis codecov
 script:
-  - python setup.py test
-
+  - tox
 after_success:
   - codecov

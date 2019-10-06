@@ -1,4 +1,4 @@
-"""Semantic Versioning Helper for Python
+"""Semantic Versioning Helper for Python API
 """
 __author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'

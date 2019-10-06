@@ -1,4 +1,4 @@
-"""Semantic Versioning Helper for Python
+"""Semantic Versioning Helper for Python Classes
 """
 __author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'
@@ -8,11 +8,11 @@ from typing import SupportsInt
 import re
 from . import _error
 
-VERSION_PART_MAX = 99999
+VERSION_PART_MAX = 9999
 
-_VERSION_RE = re.compile('^(\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?)?$')
-_VERSION_RANGE_RE_V1 = re.compile('(==|<=|>=|>|<|~|\\^)\\s*(\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?)?')
-_VERSION_RANGE_RE_V2 = re.compile('^(\\d+|x|\\*)(?:\\.(\\d+|x|\\*)(?:\\.(\\d+|x|\\*))?)?$')
+_VERSION_RE = re.compile(r'^(\d+)(?:\.(\d+)(?:\.(\d+))?)?$')
+_VERSION_RANGE_RE_V1 = re.compile(r'(==|<=|>=|>|<|~|\^)\s*(\d+)(?:\.(\d+)(?:\.(\d+))?)?')
+_VERSION_RANGE_RE_V2 = re.compile(r'^(\d+|x|\*)(?:\.(\d+|x|\\*)(?:\.(\d+|x|\*))?)?$')
 _MAX_VERSION_STR = '{}.{}.{}'.format(VERSION_PART_MAX, VERSION_PART_MAX, VERSION_PART_MAX)
 
 
@@ -35,10 +35,10 @@ class Version(SupportsInt):
                 raise _error.InvalidVersionIdentifier(version)
             self.major, self.minor, self.patch = match[0][0], match[0][1], match[0][2]
         elif isinstance(version, int):
-            version = '{:015d}'.format(version)
-            self.major = version[:5].strip()
-            self.minor = version[5:10].strip()
-            self.patch = version[10:].strip()
+            version = '{:012d}'.format(version)
+            self.major = version[:4].strip()
+            self.minor = version[4:8].strip()
+            self.patch = version[8:].strip()
         else:
             raise TypeError('Version identifier must be a str or Version instance, not {}'.format(type(version)))
 
@@ -85,7 +85,7 @@ class Version(SupportsInt):
         return int(self)
 
     def __int__(self) -> int:
-        return int('{:05d}{:05d}{:05d}'.format(self._major, self._minor, self._patch))
+        return int('{:04d}{:04d}{:04d}'.format(self._major, self._minor, self._patch))
 
     def __lt__(self, other) -> bool:
         return int(self) < int(Version(other))
