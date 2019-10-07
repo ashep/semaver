@@ -5,7 +5,8 @@ __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 from typing import Optional, Iterable
-from ._version import Version, VersionRange
+from ._version import Version
+from ._version_range import VersionRange
 
 
 def last(versions: Iterable[Version], v_range: VersionRange = None) -> Optional[Version]:
