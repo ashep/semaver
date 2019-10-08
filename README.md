@@ -94,7 +94,7 @@ print(Version('2.0.1') - Version('1.0.1'))  # '1.0.0'
 ```python
 from semaver import VersionRange
 
-
+VersionRange('1')
 ```
 
 

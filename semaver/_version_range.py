@@ -111,9 +111,9 @@ class VersionRange:
         """
         if isinstance(item, (list, tuple)):
             for i in item:
-                if i in self:
-                    return True
-            return False
+                if i not in self:
+                    return False
+            return True
 
         if isinstance(item, str):
             item = Version(item)
@@ -147,7 +147,7 @@ class VersionRange:
             elif self._minimum.minor == 0 and self._maximum.minor == VERSION_PART_MAX:
                 # Any patch version
                 if self._minimum.patch == 0 and self._maximum.patch == VERSION_PART_MAX:
-                    return '=={}.*'.format(self._minimum.major, self._minimum.minor)
+                    return '=={}.*'.format(self._minimum.major)
 
         return '>={},<={}'.format(self._minimum, self._maximum)
 

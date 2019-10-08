@@ -12,7 +12,7 @@ from ._version_range import VersionRange
 def last(versions: Iterable[Version], v_range: VersionRange = None) -> Optional[Version]:
     """Get latest available version from list of versions
     """
-    if not versions:
+    if not versions:  # pragma: no cover
         return None
 
     versions = sorted(versions, key=int)
