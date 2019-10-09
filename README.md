@@ -26,8 +26,8 @@ pip install semaver
 
 ### Version objects
 
-To create version, instantiate `Version` class passing version identifier as a 
-constructor argument: 
+To create a version object, instantiate the `Version` class and pass version 
+identifier as a first constructor's argument: 
 
 ```python
 from semaver import Version
@@ -35,11 +35,11 @@ from semaver import Version
 v1_0_0 = Version('1.0.0')
 ```
 
-Valid version identifiers can be found as [https://semver.org/] except that 
-currently *SemaVer* does not support [pre-release]
-and [build metadata] specs.
+Valid version identifiers can be found at [semver.org](https://semver.org/). 
+Please note that currently *SemaVer* does not support [pre-release] and 
+[build metadata] specs.
 
-All non-specified parts of the version identifier counted as zeroes, i. e. 
+All non-specified parts of the version identifier counts as zeroes, i. e. 
 `'1' == '1.0' == '1.0.0'`.
 
 
@@ -69,15 +69,6 @@ assert v1_0 == '1.0'  # True
 assert v1_0 == '1.0.0'  # True
 ```
 
-Also it is possible to compare versions against strings:
-
-```python
-from semaver import Version
-
-v1_0 = Version('1.0')
-v1_0_0 = Version('1.0.0')
-v1_0_1 = Version('1.0.1')
-```
 
 ### Adding and subtracting versions
 
@@ -96,7 +87,7 @@ print(Version('2.0.1') - Version('1.0.1'))  # '1.0.0'
 
 ### Version range objects
 
-Instance of `VersionRange` represents a version range. First argument of 
+Instance of `VersionRange` represents a version range. First argument of the
 constructor is a version range identifier. 
 
 ```python
@@ -194,8 +185,7 @@ file for details.
 
 [pre-release]: https://semver.org/#spec-item-9
 
-[build-metadata]:
-    https://semver.org/#spec-item-10
+[build-metadata]: https://semver.org/#spec-item-10
 
 [Python comparison operators]:
     https://docs.python.org/3/reference/expressions.html#comparisons
@@ -204,8 +194,7 @@ file for details.
     https://www.python.org/dev/peps/pep-0440/#version-specifiers
 
 [NPM version range syntax]:
-    https://docs.npmjs.com/about-semantic-versioning#using-semantic-versioning-
-    to-specify-update-types-your-package-can-accept
+    https://docs.npmjs.com/about-semantic-versioning#using-semantic-versioning-to-specify-update-types-your-package-can-accept
 
 [CONTRIBUTING.md]: CONTRIBUTING.md
 
