@@ -7,7 +7,7 @@ with open('README.md') as fh:
 
 setup(
     name='semaver',
-    version='0.2',
+    version='0.2.1',
     author='Oleksandr Shepetko',
     author_email='a@shepetko.com',
     description='Semantic Versioning Helper for Python',
@@ -17,8 +17,8 @@ setup(
     download_url='https://github.com/ashep/semaver/archive/master.zip',
     packages=find_packages(),
     install_requires=[],
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest', 'pytest-cov'],
+    setup_requires=[],
+    tests_require=[],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

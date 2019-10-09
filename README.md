@@ -1,7 +1,7 @@
 # SemaVer
 
-Semaver is a simple library for Python that helps to work with versions using 
-[semantic versioning notation](https://semver.org/).
+SemaVer is a simple library for Python that helps to work with versions using 
+[semantic versioning notation].
 
 
 ## Build status
@@ -12,7 +12,7 @@ Semaver is a simple library for Python that helps to work with versions using
 
 ## Requirements
 
-[Python](https://python.org) >=3.5
+[Python] >=3.5
 
 
 ## Installation
@@ -24,24 +24,28 @@ pip install semaver
 ## Usage
 
 
-### Create version object
+### Version objects
+
+To create version, instantiate `Version` class passing version identifier as a 
+constructor argument: 
 
 ```python
 from semaver import Version
 
 v1_0_0 = Version('1.0.0')
-
-# or
-
-v1_0 = Version('1.0')  # The same as above
-
-# or even
-
-v1 = Version('1')  # The same as above
 ```
+
+Valid version identifiers can be found as [https://semver.org/] except that 
+currently *SemaVer* does not support [pre-release]
+and [build metadata] specs.
+
+All non-specified parts of the version identifier counted as zeroes, i. e. 
+`'1' == '1.0' == '1.0.0'`.
 
 
 ### Compare versions
+
+You may compare versions using regular [Python comparison operators]:
 
 ```python
 from semaver import Version
@@ -57,10 +61,15 @@ assert v1_0 < v1_0_1  # True
 assert v1_0 <= v1_0_1  # True
 assert v1_0 > v1_0_1  # False
 assert v1_0 >= v1_0_1  # False
+
+# Or using plain strings
+
+assert v1_0 == '1'  # True
+assert v1_0 == '1.0'  # True
+assert v1_0 == '1.0.0'  # True
 ```
 
-
-### Compare version against string
+Also it is possible to compare versions against strings:
 
 ```python
 from semaver import Version
@@ -68,10 +77,6 @@ from semaver import Version
 v1_0 = Version('1.0')
 v1_0_0 = Version('1.0.0')
 v1_0_1 = Version('1.0.1')
-
-assert v1_0 == '1'  # True
-assert v1_0 == '1.0'  # True
-assert v1_0 == '1.0.0'  # True
 ```
 
 ### Adding and subtracting versions
@@ -89,18 +94,64 @@ print(Version('2.0.1') - Version('1.0.1'))  # '1.0.0'
 ```
 
 
-### Create version range object
+### Version range objects
+
+Instance of `VersionRange` represents a version range. First argument of 
+constructor is a version range identifier. 
 
 ```python
 from semaver import VersionRange
 
-VersionRange('1')
+VersionRange('1.x')
 ```
 
+Following formats are supported.
 
-## Documentation
+- [PEP-440 version specifiers] except `~=` and `===` clauses.
+- [NPM version range syntax].
+  
+For example, each item of the following list shows equal version range 
+identifiers: 
 
-To do.
+- `1.x`, `1.*`, `^1`, `>=1,<2`.
+- `^1.1`, `>=1.1,<2`.
+- `1.0.x`, `1.0.*`, `~1`, `~1.0`.
+
+
+## Checking if a version is in a range
+
+```python
+from semaver import Version, VersionRange
+
+v1_2_3 = Version('1.2.3')
+v1_x = VersionRange('1.x')
+v2_x = VersionRange('2.x')
+
+assert v1_2_3 in v1_x  # True
+assert v1_2_3 in v2_x  # False
+
+# Or using plain strings
+
+assert '1.2.3' in v1_x  # True
+assert '1.2.3' in v2_x  # False
+```
+
+## Checking if a range is in a range
+
+```python
+from semaver import VersionRange
+
+v1_to_3 = VersionRange('>=1,<=3')
+v2_x = VersionRange('2.x')
+
+assert v2_x in v1_to_3  # True
+assert v1_to_3 in v2_x  # False
+
+# Or using plain strings
+
+assert '2.x' in v1_to_3  # True
+assert '>=1,<=3' in v2_x  # False
+```
 
 
 ## Testing
@@ -112,21 +163,12 @@ tox
 
 ## Contributing
 
-See the [CONTRIBUTING.md](CONTRIBUTING.md) file for details.
+See the [CONTRIBUTING.md] file for details.
 
 
 ## Changelog
 
-See the [CHANGELOG.md](CHANGELOG.md) file for details.
-
-
-## Roadmap
-
-* Cleanup existing code.
-* Write missing comments in code.
-* Write tests.
-* Write documentation.
-* Finish this readme.
+See the [CHANGELOG.md] file for details.
 
 
 ## Support
@@ -142,5 +184,31 @@ project's [Issue Tracker](https://github.com/ashep/semaver/issues).
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) 
+This project is licensed under the MIT License. See the [LICENSE.md] 
 file for details.
+
+
+[semantic versioning notation]: https://semver.org/
+
+[Python]: https://python.org
+
+[pre-release]: https://semver.org/#spec-item-9
+
+[build-metadata]:
+    https://semver.org/#spec-item-10
+
+[Python comparison operators]:
+    https://docs.python.org/3/reference/expressions.html#comparisons
+
+[PEP-440 version specifiers]:
+    https://www.python.org/dev/peps/pep-0440/#version-specifiers
+
+[NPM version range syntax]:
+    https://docs.npmjs.com/about-semantic-versioning#using-semantic-versioning-
+    to-specify-update-types-your-package-can-accept
+
+[CONTRIBUTING.md]: CONTRIBUTING.md
+
+[CHANGELOG.md]: CHANGELOG.md
+
+[LICENSE.md]: LICENSE.md
