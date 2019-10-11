@@ -109,7 +109,7 @@ identifiers:
 - `1.0.x`, `1.0.*`, `~1`, `~1.0`.
 
 
-## Checking if a version is in a range
+### Checking if a version is in a range
 
 ```python
 from semaver import Version, VersionRange
@@ -127,7 +127,7 @@ assert '1.2.3' in v1_x  # True
 assert '1.2.3' in v2_x  # False
 ```
 
-## Checking if a range is in a range
+### Checking if a range is in a range
 
 ```python
 from semaver import VersionRange
@@ -185,7 +185,7 @@ file for details.
 
 [pre-release]: https://semver.org/#spec-item-9
 
-[build-metadata]: https://semver.org/#spec-item-10
+[build metadata]: https://semver.org/#spec-item-10
 
 [Python comparison operators]:
     https://docs.python.org/3/reference/expressions.html#comparisons
